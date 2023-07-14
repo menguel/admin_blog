@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% for article in article %}
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            {% if article.image %}
+            <img src="{{ article.image.url }}" class="card-img-top" alt="{{article.name}}">
+            {% else %}
+            <h3> No image </h3>
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ article.name }}</h5>
+              <p class="card-text">{{ article.like }}</p>
+              <a href="#" class="btn btn-primary"> Add to card</a>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

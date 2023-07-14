@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load myfilter %}
+
+{% block content %}
+
+{% endblock %}
+
+
+{% block list %}
+{% for element in maList %}
+
+<li>{{element|addcent}}---{{ nom|lower }} </li>
+
+{% empty %}
+
+<p> Pas d'élément</p>
+
+{% endfor %}
+{% endblock %}
