@@ -12,7 +12,7 @@ class ArticleForm(forms.ModelForm):
             'placeholder' : 'Enter Article description',
             'rows':5,
             'cols':10,
-            'class' : 'm1 m2 m3',
+            'class' : 'exampleFormControlTextarea1',
             'id' : 'myId'
         }
     ))

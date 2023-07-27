@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 
 # Create your models here.
@@ -15,6 +16,12 @@ class Articles(models.Model):
 
     def __str__(self):
         return self.name
+
+    # Construire des urls dynamique
+    def get_absolute_url(self):
+        # Nom de la fonctionne à appeler
+        return reverse("update", kwargs={"my_id": self.pk})
+    
 
 #Chaque fois qu'on apporte des modifications à la table 
 # $ python manage.py makemigrations   $ python manage.py migrate

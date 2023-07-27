@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404 , redirect
+from django.http import Http404
 from django.http import HttpResponse
 from .models import Articles
 # Create your views here.
@@ -40,10 +41,15 @@ def articleCreate(request):
     return render(request, 'articles/create.html', {'form':form, 'message':message })
 
 
-def modifier(request):
+def modifier(request, my_id):
     # Modifier le dernier produits 
-    last = Articles.objects.all().count()
-    obj = Articles.objects.get(id=last)
+    # last = Articles.objects.all().count()
+    # obj = Articles.objects.get(id=last)
+    # try:
+    #     obj = Articles.objects.get(id=my_id)
+    # except Articles.DoesNotExist:
+    #     raise Http404
+    obj = get_object_or_404(Articles, id=my_id)
     form = ArticleForm(request.POST or None, instance=obj)
     message =''
     if form.is_valid():
@@ -53,7 +59,9 @@ def modifier(request):
     return render(request, 'articles/update.html', {'form':form, 'message':message })
 
 
-
+def table(request):
+    obj = Articles.objects.all()
+    return render(request, 'articles/tables.html', {'obj': obj} )
 # def articleCreate(request):
 #     if request.method == "POST" :
 #         name = request.POST.get('name')
@@ -78,3 +86,13 @@ def modifier(request):
 #             form = RowArticleForm
 #             message = 'Article was successfully saved'
 #     return render(request, 'articles/create.html', {'form':form, 'message':message})
+
+def deleteArticle(request, my_id):
+    obj = get_object_or_404(Articles, id=my_id)
+    name = obj.name
+    if request.method == "POST":
+        obj.delete()
+
+        return redirect('tables')
+
+    return render(request, 'articles/delete.html', {'name':name})

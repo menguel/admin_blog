@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<h1>Are you sure that you want to delete {{ name }} article </h1>
+<center>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+        <button class="btn btn-primary"> <a href="{% url 'tables' %}"></a>Quitter</button>
+    </form>
+</center>
+
+{% endblock %}

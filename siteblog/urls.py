@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import home, blog, detail, articleCreate, modifier
+from blog.views import home, blog, detail, articleCreate, modifier, table, deleteArticle
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,7 +26,9 @@ urlpatterns = [
     path('blog', blog, name='blog'),
     path('', detail, name='detail'),
     path('create', articleCreate, name='create'),
-    path('update', modifier, name='update'),
+    path('update/<int:my_id>', modifier, name='update'),
+    path('tables', table, name='tables'),
+    path('delete/<int:my_id>', deleteArticle, name='deleteArticle')
 ]
 
 
