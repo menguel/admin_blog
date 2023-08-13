@@ -1,0 +1,19 @@
+{% extends 'squelette.html' %}
+{% block auth %}
+
+{% for message in messages %}
+{{message}}
+{% endfor %}
+
+{% if user.is_authenticated %}
+<h3>Bonjour {{ firstname }} bienvenu sur le blog de Joe</h3>
+<button type="button" class="btn btn-secondary btn-lg btn-block"><a style="color: aliceblue; text-decoration: none;" href="logout">Se déconnecter</a></button>
+
+{% else %}
+
+<button type="button" class="btn btn-primary btn-lg btn-block"><a style="color: aliceblue; text-decoration: none;" href="/register">S'enregistrer</a></button>
+<button type="button" class="btn btn-success btn-lg btn-block"><a style="color: aliceblue; text-decoration: none;" href="/login">Se connecter</a></button>
+
+{% endif %}
+ 
+{% endblock %}
