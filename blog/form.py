@@ -22,13 +22,13 @@ class ArticleForm(forms.ModelForm):
         model = Articles
         fields = ('name', 'description', 'like', 'image', 'actif')
 
-    def clean_name(self, *args, **kwargs):
+"""     def clean_name(self, *args, **kwargs):
             name = self.cleaned_data.get('name')
             if 'uba' in name:
                 return name
             else:
                 raise forms.ValidationError('Le mot uba doit apparaitre dans votre nom')
-    
+     """
     
 class RowArticleForm(forms.Form):
     name = forms.CharField(label='', required=False, widget=forms.TextInput(
