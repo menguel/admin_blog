@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'blog',
     'authentication',
     'blog_article',
+    'courses',
 ]
 
 MIDDLEWARE = [
