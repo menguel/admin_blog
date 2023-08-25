@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>Etes-vous sur de vouloir supprimer ?</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">delete</button>
+    <button class="btn btn-secondry"><a href="">Cancel</a></button>
+</form>
+
+{% endblock content %}
