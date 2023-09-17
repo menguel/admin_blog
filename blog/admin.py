@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Articles
+from .models import Articles, Abonne, Utilisateur
 
 # Register your models here.
 class AdminArticle(admin.ModelAdmin):
@@ -7,3 +7,5 @@ class AdminArticle(admin.ModelAdmin):
 
 
 admin.site.register(Articles, AdminArticle)
+admin.site.register(Abonne)
+admin.site.register(Utilisateur)

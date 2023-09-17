@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404 , redirect
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.http import HttpResponse
 from .models import Articles
@@ -58,10 +59,28 @@ def modifier(request, my_id):
         message = 'We have receive your Article'
     return render(request, 'articles/update.html', {'form':form, 'message':message })
 
-
+@login_required(login_url='login')
 def table(request):
+    number = request.session.get('visit', 0) +1
+    request.session['visit'] = number
+    if number > 4:
+        del (request.session['visit'])
     obj = Articles.objects.all()
-    return render(request, 'articles/tables.html', {'obj': obj} )
+    print(request.COOKIES)
+    context = {
+        'obj':obj,
+        'number': number
+    }
+    reponse = render(request, 'articles/tables.html', context )
+    username = request.user.username
+    password = request.user.password
+    reponse.set_cookie('username', username, max_age=100)
+    reponse.set_cookie('password', password)
+    return reponse
+
+
+
+
 # def articleCreate(request):
 #     if request.method == "POST" :
 #         name = request.POST.get('name')
